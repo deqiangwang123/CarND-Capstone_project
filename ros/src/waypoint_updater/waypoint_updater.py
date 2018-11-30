@@ -37,12 +37,18 @@ class WaypointUpdater(object):
         self.final_waypoints_pub = rospy.Publisher('final_waypoints', Lane, queue_size=1)
 
         # TODO: Add other member variables you need below
-
+	self.pose = None
+	self.base_waypoints = None
+	self.waypoints_2d = None
+	self.waypoint_tree = None
+	self.loop()
         rospy.spin()
 
+    def loop(self):
+        rate = rospy.Rate(50)
+
     def pose_cb(self, msg):
-        # TODO: Implement
-        pass
+        self.pose = msg
 
     def waypoints_cb(self, waypoints):
         # TODO: Implement
