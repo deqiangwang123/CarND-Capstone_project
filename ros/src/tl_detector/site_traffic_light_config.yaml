@@ -6,3 +6,4 @@ camera_info:
 stop_line_positions:
     - [8.0, 16.2]
 is_site: True
+detection_model: '/../../../../data/traffic_light_detection_model/real/frozen_inference_graph.pb'

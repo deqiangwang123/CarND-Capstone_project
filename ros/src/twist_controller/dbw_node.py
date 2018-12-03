@@ -64,12 +64,11 @@ class DBWNode(object):
         rospy.Subscriber('/twist_cmd',TwistStamped, self.twist_cb)
         rospy.Subscriber('/current_velocity',TwistStamped, self.velocity_cb)
 
-
         self.controller = Controller(vehicle_mass=vehicle_mass, fuel_capacity=fuel_capacity,
-                                     acceleration_limit=acceleration_limit,
+                                     accel_limit=acceleration_limit,
                                      deceleration_limit=decelaration_limit,
                                      wheel_base=wheel_base, wheel_radius=wheel_radius,
-                                     steer_ratio=steer_ratio, max_lat_acceleration=max_lat_acceleration,
+                                     steer_ratio=steer_ratio,max_lat_accel=max_lat_acceleration,
                                      max_steer_angle=max_steer_angle, min_speed=min_speed)
 
 
