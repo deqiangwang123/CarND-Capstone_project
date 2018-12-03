@@ -102,7 +102,7 @@ class DBWNode(object):
         if msg:
             self.controller.reset()
         self.dbw_enabled = msg.data
-        rospy.loginfo("DBW was turned {}".format("on" if dbw_enabled else "off"))
+        rospy.loginfo("DBW was turned {}".format("on" if self.dbw_enabled else "off"))
         # self.dbw_enabled = msg
 
     def twist_cb(self, msg):

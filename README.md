@@ -2,6 +2,8 @@ This is the project repo for the final project of the Udacity Self-Driving Car N
 
 Please use **one** of the two installation options, either native **or** docker installation.
 
+# Submission
+Sanket Gujar (srgujar (at) wpi.edu)
 ### Native Installation
 
 * Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
@@ -72,3 +74,19 @@ cd CarND-Capstone/ros
 roslaunch launch/site.launch
 ```
 5. Confirm that traffic light detection works on real life images
+
+
+
+run the following commands if you get dbw error messages
+```
+sudo apt-get update
+sudo apt-get install -y ros-kinetic-dbw-mkz-msgs
+cd /home/workspace/CarND-Capstone/ros
+rosdep install --from-paths src --ignore-src --rosdistro=kinetic -y
+```
+
+### Attributions
+
+-[https://becominghuman.ai/traffic-light-detection-tensorflow-api-c75fdbadac62](https://becominghuman.ai/traffic-light-detection-tensorflow-api-c75fdbadac62)
+
+-[https://github.com/mkoehnke/CarND-Capstone-TrafficLightDetection](Mathias Detection)
