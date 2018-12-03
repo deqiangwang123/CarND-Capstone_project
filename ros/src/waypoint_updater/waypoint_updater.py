@@ -112,9 +112,9 @@ class WaypointUpdater(object):
     def decelerate(self, lane, current_waypoint_idx):
         tr_vel = self.current_velocity_mps
         current_velocity = self.current_velocity_mps
-        acceleration = current_velocity ** 2.0/(2.0*distance)
         distance = self.dist_pos(self.current_position, self.lane.waypoints[
             self.next_stopline_waypoint].pose.pose.position) - BUF_SAFE
+        acceleration = current_velocity ** 2.0/(2.0*distance)
         i = 0
         while tr_vel > 0.0 or i < LOOKAHEAD_WPS:
             end_pos = self.lane.waypoints[
