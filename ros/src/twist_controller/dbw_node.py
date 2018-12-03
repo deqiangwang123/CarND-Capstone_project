@@ -111,6 +111,11 @@ class DBWNode(object):
         self.twist_cmd = msg
 
 
+    def can_control(self):
+        return self.dbw_enabled is not None and self.dbw_enabled and \
+               self.twist_cmd is not None and self.current_velocity is not None
+
+
     def velocity_cb(self, msg):
         self.current_velocity = msg
         # self.current_vel = msg.twist.linear.x
