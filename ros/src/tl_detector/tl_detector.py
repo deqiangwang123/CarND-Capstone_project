@@ -177,7 +177,7 @@ class TLDetector(object):
 
     def get_stop_line_locations(self):
         stop_line_locations = []
-        for light_position in self.config['stop_line_locations']:
+        for light_position in self.config['stop_line_positions']:
             p = Waypoint()
             p.pose.pose.position.x = light_position[0]
             p.pose.pose.position.y = light_position[1]
