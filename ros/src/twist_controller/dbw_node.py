@@ -77,6 +77,10 @@ class DBWNode(object):
         self.dbw_enabled = None
         self.linear_vel = None
         self.angular_vel = None
+        self.current_velocity = None
+        self.twist_cmd = None
+        self.dbw_enabled = None
+        self.last_time = rospy.Time().now()
         self.throttle = self.sterring = self.brake = 0
         self.loop()
 
