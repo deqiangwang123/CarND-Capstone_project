@@ -37,6 +37,7 @@ Carla use waypoint navigation to drive autonomously while avoiding obstacles and
 The purpose of this node is to update the target velocity property of each waypoint based on traffic light and obstacle detection. It will publish a list of waypoints ahead of the car with target velocities to the /final_waypoints topic.
 
 ![Planning Node](imgs/plan_1.png)
+
 |Topic | Info |
 |--- | --- |
 |/final_waypoint |list of waypoints ahead of the car with target velocities |
@@ -51,6 +52,7 @@ Carla is equipped with a drive-by-wire (dbw) system, meaning the throttle, brake
 
 
 ![Control Node](imgs/control_1.png)
+
 |Topic | Info |
 |--- | --- |
 |/current_velocity| target linear velocity|
