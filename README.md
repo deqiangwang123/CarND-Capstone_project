@@ -29,9 +29,34 @@ Carla use waypoint navigation to drive autonomously while avoiding obstacles and
 
 |Topic | Info |
 |--- | --- |
-|/traffic_waypoint | publishes location stop for red light|
+|/traffic_waypoint | location to stop for red light|
 |/current_pose| Provides the current position|
 |/base_waypoints| list of waypoints the car will be following|
+
+#Planning
+The purpose of this node is to update the target velocity property of each waypoint based on traffic light and obstacle detection. It will publish a list of waypoints ahead of the car with target velocities to the /final_waypoints topic.
+
+![Planning Node](imgs/plan_1.png)
+|Topic | Info |
+|--- | --- |
+|/final_waypoint |list of waypoints ahead of the car with target velocities |
+|/obstacle_waypoint |  location to stop for obstacle|
+|/traffic_waypoint | location to stop for red light|
+|/current_pose| Provides the current position|
+|/base_waypoints| list of waypoints the car will be following|
+
+#Controls
+
+Carla is equipped with a drive-by-wire (dbw) system, meaning the throttle, brake, and steering have electronic control. This package contains the files that are responsible for control of the vehicle: the node dbw_node.py and the file twist_controller.py, along with a pid and lowpass filter. The dbw_node subscribes to the /current_velocity topic along with the /twist_cmd topic to receive target linear and angular velocities. Additionally, this node will subscribe to /vehicle/dbw_enabled, which indicates if the car is under dbw or driver control. This node will publish throttle, brake, and steering commands to the /vehicle/throttle_cmd, /vehicle/brake_cmd, and /vehicle/steering_cmd topics.
+
+
+![Control Node](imgs/control_1.png)
+|Topic | Info |
+|--- | --- |
+|/current_velocity| target linear velocity|
+|/twist_cmd| target angular velocity|
+|/vehicle/dbw_enabled| car control under dbw or manual|
+
 
 
 
