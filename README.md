@@ -1,9 +1,35 @@
-This is the project repo for the final project of the Udacity Self-Driving Car Nanodegree: Programming a Real Self-Driving Car. For more information about the project, see the project introduction [here](https://classroom.udacity.com/nanodegrees/nd013/parts/6047fe34-d93c-4f50-8336-b70ef10cb4b2/modules/e1a23b06-329a-4684-a717-ad476f0d8dff/lessons/462c933d-9f24-42d3-8bdc-a08a5fc866e4/concepts/5ab4b122-83e6-436d-850f-9f4d26627fd9).
+Final project of the Udacity Self-Driving Car Nanodegree: Programming a Real Self-Driving Car. For more information about the project, see the project introduction [here](https://classroom.udacity.com/nanodegrees/nd013/parts/6047fe34-d93c-4f50-8336-b70ef10cb4b2/modules/e1a23b06-329a-4684-a717-ad476f0d8dff/lessons/462c933d-9f24-42d3-8bdc-a08a5fc866e4/concepts/5ab4b122-83e6-436d-850f-9f4d26627fd9).
 
-Please use **one** of the two installation options, either native **or** docker installation.
 
 # Submission
 Sanket Gujar (srgujar (at) wpi.edu)
+
+Carla use waypoint navigation to drive autonomously while avoiding obstacles and stopping at traffic lights. Waypoints are ordered set of coordinated that Carla uses to plan a path. Each waypoint has a associated target velocity which depends on the desired vehicle behavior. There are 3 modules implementation for this project:
+1. Perception:
+   a. Traffic light detection
+   b. Obstacle detection
+
+2. Planning:
+   Waypoint Updater (Set the velocity for each waypoint)
+
+3. Contol:
+   Controls the car's throttle, steering, and brake using Dataspeed Drive by wire (DBW) ROS node.
+
+
+# Architecture
+
+![Architecture](imgs/carla_final.png)
+
+
+# Perception
+
+![Perception Node](imgs/per_1.png)
+
+
+
+## Installation
+Please use **one** of the two installation options, either native **or** docker installation.
+
 ### Native Installation
 
 * Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
