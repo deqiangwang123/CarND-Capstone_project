@@ -2,8 +2,10 @@ Final project of the Udacity Self-Driving Car Nanodegree: Programming a Real Sel
 
 
 # Submission
-Sanket Gujar (srgujar (at) wpi.edu)
+## Sanket Gujar (srgujar (at) wpi.edu)
 
+
+# Introduction
 Carla use waypoint navigation to drive autonomously while avoiding obstacles and stopping at traffic lights. Waypoints are ordered set of coordinated that Carla uses to plan a path. Each waypoint has a associated target velocity which depends on the desired vehicle behavior. There are 3 modules implementation for this project:
 1. Perception:
    a. Traffic light detection
@@ -24,6 +26,12 @@ Carla use waypoint navigation to drive autonomously while avoiding obstacles and
 # Perception
 
 ![Perception Node](imgs/per_1.png)
+
+|Topic | Info |
+|--- | --- |
+|/traffic_waypoint | publishes location stop for red light|
+|/current_pose| Provides the current position|
+|/base_waypoints| list of waypoints the car will be following|
 
 
 
