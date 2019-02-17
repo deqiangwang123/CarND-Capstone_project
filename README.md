@@ -1,5 +1,6 @@
 Final project of the Udacity Self-Driving Car Nanodegree: Programming a Real Self-Driving Car. For more information about the project, see the project introduction [here](https://classroom.udacity.com/nanodegrees/nd013/parts/6047fe34-d93c-4f50-8336-b70ef10cb4b2/modules/e1a23b06-329a-4684-a717-ad476f0d8dff/lessons/462c933d-9f24-42d3-8bdc-a08a5fc866e4/concepts/5ab4b122-83e6-436d-850f-9f4d26627fd9).
 
+![Sim](imgs/car_driving.gif)
 
 # Submission
 ## Sanket Gujar (srgujar (at) wpi.edu)
@@ -8,13 +9,17 @@ Final project of the Udacity Self-Driving Car Nanodegree: Programming a Real Sel
 # Introduction
 Carla use waypoint navigation to drive autonomously while avoiding obstacles and stopping at traffic lights. Waypoints are ordered set of coordinated that Carla uses to plan a path. Each waypoint has a associated target velocity which depends on the desired vehicle behavior. There are 3 modules implementation for this project:
 1. Perception:
+
    a. Traffic light detection
+
    b. Obstacle detection
 
 2. Planning:
+
    Waypoint Updater (Set the velocity for each waypoint)
 
 3. Contol:
+
    Controls the car's throttle, steering, and brake using Dataspeed Drive by wire (DBW) ROS node.
 
 
@@ -25,38 +30,54 @@ Carla use waypoint navigation to drive autonomously while avoiding obstacles and
 
 # Perception
 
+
+
 ![Perception Node](imgs/per_1.png)
 
 |Topic | Info |
 |--- | --- |
-|/traffic_waypoint | location to stop for red light|
+|/traffic_waypoint | index of the waypoint for nearest upcoming red light's stop line|
 |/current_pose| Provides the current position|
 |/base_waypoints| list of waypoints the car will be following|
+|/image_color |image stream from the car's camera|
+|/vehicle/traffic_lights | (x, y, z) coordinates of all traffic light|
 
-#Planning
+
+# Planning
+
 The purpose of this node is to update the target velocity property of each waypoint based on traffic light and obstacle detection. It will publish a list of waypoints ahead of the car with target velocities to the /final_waypoints topic.
 
 ![Planning Node](imgs/plan_1.png)
 
-|Topic | Info |
-|--- | --- |
-|/final_waypoint |list of waypoints ahead of the car with target velocities |
+|Topic | Info |Type|
+|--- | --- |--|
+|/final_waypoint |list of waypoints ahead of the car with target velocities |styx_msgs/Lane|
 |/obstacle_waypoint |  location to stop for obstacle|
 |/traffic_waypoint | location to stop for red light|
-|/current_pose| Provides the current position|
-|/base_waypoints| list of waypoints the car will be following|
+|/current_pose| Provides the current position| geometry_msgs/PoseStamped|
+|/base_waypoints| list of waypoints the car will be following provided by a static .csv file|	styx_msgs/Lane |
 
-#Controls
+The /base_waypoints topic publishes a list of all waypoints for the track, so this list includes waypoints both before and after the vehicle.
+
+/basewaypoints contain a header and a Waypoint list named waypoints. Each waypoint has pose and twist data. twist.twist data contains 3D linear and angular velocities.
+
+I used KDTree to find the waypoints that are closest to the car.
+
+# Controls
 
 Carla is equipped with a drive-by-wire (dbw) system, meaning the throttle, brake, and steering have electronic control. This package contains the files that are responsible for control of the vehicle: the node dbw_node.py and the file twist_controller.py, along with a pid and lowpass filter. The dbw_node subscribes to the /current_velocity topic along with the /twist_cmd topic to receive target linear and angular velocities. Additionally, this node will subscribe to /vehicle/dbw_enabled, which indicates if the car is under dbw or driver control. This node will publish throttle, brake, and steering commands to the /vehicle/throttle_cmd, /vehicle/brake_cmd, and /vehicle/steering_cmd topics.
 
+
+Throttle values passed to publish are in the range 0 to 1, a throttle of 1 means the vehicle throttle will be fully engaged. Brake values passed to publish is in units of torque (N*m). The correct values for brake is computed using the desired acceleration, weight of the vehicle, and wheel radius.
+```
+brake  = deceleration x vehicle mass x wheel radius
+```
 
 ![Control Node](imgs/control_1.png)
 
 |Topic | Info |
 |--- | --- |
-|/current_velocity| target linear velocity|
-|/twist_cmd| target angular velocity|
+|/current_velocity and /twist_cmd| target linear and angular velocity|
 |/vehicle/dbw_enabled| car control under dbw or manual|
 
 
